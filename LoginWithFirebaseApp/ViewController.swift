@@ -9,13 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var registerButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        registerButton.layer.cornerRadius = 10
+        
     }
-
+    
 
 }
 
-//ジミンモシッタ
+
