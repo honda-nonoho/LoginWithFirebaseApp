@@ -90,6 +90,9 @@
                                 <state key="normal" title="ログイン">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="tappedRegisterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RVQ-lH-q7h"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfU-Go-RlY">
                                 <rect key="frame" x="62.5" y="716" width="289" height="30"/>
@@ -125,7 +128,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="lhK-ni-uzd" id="jc8-RM-luS"/>
+                        <outlet property="passwordTextField" destination="PMf-ec-kvy" id="rhc-DM-0EW"/>
                         <outlet property="registerButton" destination="vY0-dK-PT4" id="XYs-Gw-q2K"/>
+                        <outlet property="usernameTextField" destination="na6-1o-j5W" id="tLr-vv-bvU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
