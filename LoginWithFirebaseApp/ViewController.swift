@@ -37,12 +37,16 @@ class ViewController: UIViewController {
     }
     
     private func handleAuthToFirebase() {
+        HUD.show(.progress, onView: view)
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
         Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
             if let err = err {
                 print("認証情報の保存に失敗しました。\(err)")
+                HUD.hide { (_) in
+                    HUD.flash(.error, delay: 1)
+                }
                 return
             }
             self.addUserInfoToFirestore(email: email)
@@ -60,6 +64,10 @@ class ViewController: UIViewController {
         userRef.setData(docdata) { (err) in
             if let err = err {
                 print("Firestoreへの保存に失敗しました。\(err)")
+                HUD.hide { (_) in
+                    HUD.flash(.error, delay: 1)
+                }
+                
                 return
             }
             print("Firestoreへの保存に成功しました。")
@@ -67,21 +75,33 @@ class ViewController: UIViewController {
             userRef.getDocument { (snapshot, err)in
                 if let err = err {
                     print("ユーザー情報の取得に失敗しました。\(err)")
+                    HUD.hide { (_) in
+                        HUD.flash(.error, delay: 1)
+                    }
                     return
                 }
     
                 guard let data = snapshot?.data() else { return }
                 let user = User.init(dic: data)
                 print("ユーザー情報の取得ができました。 \(user.name)")
-                
-                let storyBoard = UIStoryboard(name: "Home", bundle: nil)
-                let homeViewController = storyBoard.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
-                homeViewController.user = user
-                homeViewController.modalPresentationStyle = .fullScreen
-                self.present(homeViewController, animated: true,completion: nil)
-                
+                HUD.hide { (_) in
+//                    HUD.flash(.success, delay: 1)
+                    HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                        self.presentToHomeViewController(user: user)
+                    }
+                }
             }
         }
+    }
+    
+    private func presentToHomeViewController(user: User) {
+        let storyBoard = UIStoryboard(name: "Home", bundle: nil)
+        let homeViewController = storyBoard.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+        homeViewController.user = user
+        homeViewController.modalPresentationStyle = .fullScreen
+        self.present(homeViewController, animated: true,completion: nil)
+        
+        
     }
 
     override func viewDidLoad() {
