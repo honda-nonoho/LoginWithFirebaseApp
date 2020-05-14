@@ -10,6 +10,20 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
+import PKHUD
+
+struct User {
+    
+    let name: String
+    let createdAt: Timestamp
+    let email: String
+    
+    init(dic: [String: Any]) {
+        self.name = dic["name"] as! String
+        self.createdAt = dic["createdAt"] as! Timestamp
+        self.email = dic["email"] as! String
+    }
+}
 
 class ViewController: UIViewController {
     
@@ -31,25 +45,43 @@ class ViewController: UIViewController {
                 print("認証情報の保存に失敗しました。\(err)")
                 return
             }
-       
-            guard let uid = Auth.auth().currentUser?.uid else { return }
-            guard let name = self.usernameTextField.text else { return }
-            
-            let docDeta = ["email": email, "name": name, "createdAt": Timestamp()] as [String : Any]
-            
-            
-            Firestore.firestore().collection("users").document(uid).setData(docDeta) { (err) in
-                if let err = err {
-                    print("Firestoreへの保存に失敗しました。\(err)")
-                    return
-                }
-                
-                print("Firestoreへの保存に成功しました。")
-                
-            }
-            
+            self.addUserInfoToFirestore(email: email)
         }
     
+    }
+    
+    private func addUserInfoToFirestore(email: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let name = self.usernameTextField.text else { return }
+        
+        let docdata = ["email": email, "name": name, "createdAt": Timestamp()] as [String : Any]
+        let userRef = Firestore.firestore().collection("users").document(uid)
+        
+        userRef.setData(docdata) { (err) in
+            if let err = err {
+                print("Firestoreへの保存に失敗しました。\(err)")
+                return
+            }
+            print("Firestoreへの保存に成功しました。")
+            
+            userRef.getDocument { (snapshot, err)in
+                if let err = err {
+                    print("ユーザー情報の取得に失敗しました。\(err)")
+                    return
+                }
+    
+                guard let data = snapshot?.data() else { return }
+                let user = User.init(dic: data)
+                print("ユーザー情報の取得ができました。 \(user.name)")
+                
+                let storyBoard = UIStoryboard(name: "Home", bundle: nil)
+                let homeViewController = storyBoard.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+                homeViewController.user = user
+                homeViewController.modalPresentationStyle = .fullScreen
+                self.present(homeViewController, animated: true,completion: nil)
+                
+            }
+        }
     }
 
     override func viewDidLoad() {

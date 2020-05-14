@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="UVG-F9-370">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4Et-nX-dJH" customClass="HomeViewController" customModule="LoginWithFirebaseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9zr-U1-ddK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="こんにちは" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXW-MO-5hH">
+                                <rect key="frame" x="56.5" y="184" width="301.5" height="72"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="さんようこそ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpH-H3-BRL">
+                                <rect key="frame" x="146" y="356" width="122.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pke-AS-UsQ">
+                                <rect key="frame" x="145.5" y="400" width="123" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作成日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWO-7T-lx3">
+                                <rect key="frame" x="176.5" y="441" width="61.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o23-Cx-cNh">
+                                <rect key="frame" x="107" y="535" width="200" height="50"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="WI2-7a-i4E"/>
+                                    <constraint firstAttribute="width" constant="200" id="gd5-oV-snH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="ログアウト">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedLogoutButton:" destination="4Et-nX-dJH" eventType="touchUpInside" id="oTV-g9-XZH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Pke-AS-UsQ" firstAttribute="top" secondItem="kpH-H3-BRL" secondAttribute="bottom" constant="20" id="0FE-CE-lb3"/>
+                            <constraint firstItem="TWO-7T-lx3" firstAttribute="top" secondItem="Pke-AS-UsQ" secondAttribute="bottom" constant="20" id="Aan-YM-Vzs"/>
+                            <constraint firstItem="kpH-H3-BRL" firstAttribute="top" secondItem="WXW-MO-5hH" secondAttribute="bottom" constant="100" id="J1h-OS-wkM"/>
+                            <constraint firstItem="o23-Cx-cNh" firstAttribute="centerX" secondItem="9zr-U1-ddK" secondAttribute="centerX" id="Ju5-ub-iw7"/>
+                            <constraint firstItem="kpH-H3-BRL" firstAttribute="centerX" secondItem="9zr-U1-ddK" secondAttribute="centerX" id="cMx-OA-LDg"/>
+                            <constraint firstItem="o23-Cx-cNh" firstAttribute="top" secondItem="TWO-7T-lx3" secondAttribute="bottom" constant="70" id="dcd-Zn-Ttn"/>
+                            <constraint firstItem="WXW-MO-5hH" firstAttribute="centerX" secondItem="9zr-U1-ddK" secondAttribute="centerX" id="nKr-bS-Blc"/>
+                            <constraint firstItem="WXW-MO-5hH" firstAttribute="top" secondItem="ZeD-dR-MVh" secondAttribute="top" constant="140" id="oL0-Kn-tN2"/>
+                            <constraint firstItem="TWO-7T-lx3" firstAttribute="centerX" secondItem="9zr-U1-ddK" secondAttribute="centerX" id="qlE-tl-3IN"/>
+                            <constraint firstItem="Pke-AS-UsQ" firstAttribute="centerX" secondItem="9zr-U1-ddK" secondAttribute="centerX" id="xka-vu-617"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZeD-dR-MVh"/>
+                    </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="TWO-7T-lx3" id="5uD-dS-HDT"/>
+                        <outlet property="emailLabel" destination="Pke-AS-UsQ" id="iiS-Rp-IZV"/>
+                        <outlet property="logoutButton" destination="o23-Cx-cNh" id="uG5-So-pLz"/>
+                        <outlet property="nameLabel" destination="kpH-H3-BRL" id="ssX-8J-SHx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wOa-oe-uor" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="89.732142857142847"/>
+        </scene>
+    </scenes>
+</document>

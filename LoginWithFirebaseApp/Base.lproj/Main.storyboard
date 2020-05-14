@@ -80,20 +80,6 @@
                                     <constraint firstAttribute="height" constant="280" id="rtL-Wt-ISv"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vY0-dK-PT4">
-                                <rect key="frame" x="107" y="626" width="200" height="40"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="dcb-Cp-sbV"/>
-                                    <constraint firstAttribute="width" constant="200" id="j5y-Yl-1hk"/>
-                                </constraints>
-                                <state key="normal" title="ログイン">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="tappedRegisterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RVQ-lH-q7h"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfU-Go-RlY">
                                 <rect key="frame" x="62.5" y="716" width="289" height="30"/>
                                 <subviews>
@@ -112,17 +98,31 @@
                                     <constraint firstAttribute="height" constant="30" id="jxw-oJ-gEA"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vY0-dK-PT4">
+                                <rect key="frame" x="108" y="644" width="200" height="40"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="qd1-Zt-AdD"/>
+                                </constraints>
+                                <state key="normal" title="アカウント作成">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedRegisterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RVQ-lH-q7h"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="yfU-Go-RlY" firstAttribute="top" secondItem="vY0-dK-PT4" secondAttribute="bottom" constant="32" id="10y-FT-K1l"/>
                             <constraint firstItem="5bU-6g-GTF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="5G6-8n-pow"/>
-                            <constraint firstItem="vY0-dK-PT4" firstAttribute="top" secondItem="2jD-BV-vJ0" secondAttribute="bottom" constant="40" id="7cG-qK-h0G"/>
                             <constraint firstItem="2jD-BV-vJ0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="8EB-VM-qaY"/>
-                            <constraint firstItem="yfU-Go-RlY" firstAttribute="top" secondItem="vY0-dK-PT4" secondAttribute="bottom" constant="50" id="EcL-VP-Bhv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2jD-BV-vJ0" secondAttribute="trailing" constant="60" id="TNT-kr-yQm"/>
+                            <constraint firstItem="vY0-dK-PT4" firstAttribute="trailing" secondItem="5bU-6g-GTF" secondAttribute="trailing" id="lj9-aI-L2f"/>
                             <constraint firstItem="5bU-6g-GTF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oOy-KV-5Oj"/>
                             <constraint firstItem="yfU-Go-RlY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qIC-q5-mVI"/>
-                            <constraint firstItem="vY0-dK-PT4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="u4c-9u-c0d"/>
+                            <constraint firstItem="vY0-dK-PT4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="108" id="rOY-6d-Msd"/>
+                            <constraint firstItem="vY0-dK-PT4" firstAttribute="top" secondItem="2jD-BV-vJ0" secondAttribute="bottom" constant="58" id="s7h-uT-TLX"/>
                             <constraint firstItem="2jD-BV-vJ0" firstAttribute="top" secondItem="5bU-6g-GTF" secondAttribute="bottom" constant="40" id="zk6-Zx-MeN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
