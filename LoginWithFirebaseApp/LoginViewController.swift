@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class LoginViewController: UIViewController {
     
@@ -15,14 +16,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var dontHaveAccountButton: UILabel!
-    
     @IBAction func tappedDontHaveAccountButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func tappedLoginButton(_ sender: Any) {
         print("tapped Login Button")
-        
+        HUD.show(.progress, onView: self.view)
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
@@ -34,8 +34,36 @@ class LoginViewController: UIViewController {
             }
             
             print("ログイン情報の取得に成功しました")
-            
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            let userRef = Firestore.firestore().collection("users").document(uid)
+            userRef.getDocument { (snapshot, err)in
+                if let err = err {
+                    print("ユーザー情報の取得に失敗しました。\(err)")
+                    HUD.hide { (_) in
+                        HUD.flash(.error, delay: 1)
+                    }
+                    return
+                }
+                
+                guard let data = snapshot?.data() else { return }
+                let user = User.init(dic: data)
+                print("ユーザー情報の取得ができました。 \(user.name)")
+                HUD.hide { (_) in
+                    //                    HUD.flash(.success, delay: 1)
+                    HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                        self.presentToHomeViewController(user: user)
+                    }
+                }
+            }
         }
+    }
+    
+    private func presentToHomeViewController(user: User) {
+    let storyBoard = UIStoryboard(name: "Home", bundle: nil)
+    let homeViewController = storyBoard.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+    homeViewController.user = user
+    homeViewController.modalPresentationStyle = .fullScreen
+    self.present(homeViewController, animated: true,completion: nil)
     }
     
     override func viewDidLoad() {
