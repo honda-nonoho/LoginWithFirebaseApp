@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="wDe-It-kOi">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6X7-x2-Dw9" customClass="LoginViewController" customModule="LoginWithFirebaseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="csf-9l-YBi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ログイン画面" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uN5-Pr-89y">
+                                <rect key="frame" x="108" y="194" width="198" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="KjS-20-KLe">
+                                <rect key="frame" x="60" y="264" width="294" height="150"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bqQ-v0-7I7">
+                                        <rect key="frame" x="0.0" y="0.0" width="294" height="62.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBp-fJ-CeN">
+                                                <rect key="frame" x="0.0" y="0.0" width="294" height="17"/>
+                                                <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kaa-Lh-qvp">
+                                                <rect key="frame" x="0.0" y="17" width="294" height="45.5"/>
+                                                <color key="backgroundColor" red="0.92941176469999998" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Mef-AH-co9">
+                                        <rect key="frame" x="0.0" y="87.5" width="294" height="62.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OL8-5S-fVu">
+                                                <rect key="frame" x="0.0" y="0.0" width="294" height="17"/>
+                                                <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MAf-bm-Mzd">
+                                                <rect key="frame" x="0.0" y="17" width="294" height="45.5"/>
+                                                <color key="backgroundColor" red="0.92941176469999998" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="qxx-w6-6sB"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7J-PZ-WIN">
+                                <rect key="frame" x="45.5" y="544" width="323.5" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="まだアカウントをお持ちでない方は" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mh6-qM-ftI">
+                                        <rect key="frame" x="0.0" y="0.0" width="277.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1M8-Cb-EHb">
+                                        <rect key="frame" x="277.5" y="0.0" width="46" height="30"/>
+                                        <state key="normal" title="コチラ"/>
+                                        <connections>
+                                            <action selector="tappedDontHaveAccountButton:" destination="6X7-x2-Dw9" eventType="touchUpInside" id="ao2-e3-w7w"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="a6o-9S-AhL"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSj-RO-GXr">
+                                <rect key="frame" x="108" y="472" width="198" height="40"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="mAt-XX-NWt"/>
+                                </constraints>
+                                <state key="normal" title="ログイン">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedLoginButton:" destination="6X7-x2-Dw9" eventType="touchUpInside" id="z7e-13-WfC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uN5-Pr-89y" firstAttribute="centerX" secondItem="csf-9l-YBi" secondAttribute="centerX" id="6F6-0r-FmM"/>
+                            <constraint firstItem="GSj-RO-GXr" firstAttribute="centerX" secondItem="csf-9l-YBi" secondAttribute="centerX" id="7cE-12-a71"/>
+                            <constraint firstItem="GSj-RO-GXr" firstAttribute="top" secondItem="KjS-20-KLe" secondAttribute="bottom" constant="58" id="HQ2-8o-Ova"/>
+                            <constraint firstItem="tAS-xs-afx" firstAttribute="trailing" secondItem="KjS-20-KLe" secondAttribute="trailing" constant="60" id="Hkq-aa-QsL"/>
+                            <constraint firstItem="GSj-RO-GXr" firstAttribute="trailing" secondItem="uN5-Pr-89y" secondAttribute="trailing" id="Ksj-in-xwb"/>
+                            <constraint firstItem="g7J-PZ-WIN" firstAttribute="centerX" secondItem="csf-9l-YBi" secondAttribute="centerX" id="Tmu-gk-YnV"/>
+                            <constraint firstItem="KjS-20-KLe" firstAttribute="leading" secondItem="tAS-xs-afx" secondAttribute="leading" constant="60" id="bri-Yw-GqG"/>
+                            <constraint firstItem="KjS-20-KLe" firstAttribute="top" secondItem="uN5-Pr-89y" secondAttribute="bottom" constant="40" id="nYQ-Qf-NmP"/>
+                            <constraint firstItem="GSj-RO-GXr" firstAttribute="leading" secondItem="tAS-xs-afx" secondAttribute="leading" constant="108" id="slj-2K-jfH"/>
+                            <constraint firstItem="uN5-Pr-89y" firstAttribute="top" secondItem="tAS-xs-afx" secondAttribute="top" constant="150" id="vrZ-mC-cfO"/>
+                            <constraint firstItem="g7J-PZ-WIN" firstAttribute="top" secondItem="GSj-RO-GXr" secondAttribute="bottom" constant="32" id="yuH-k5-npj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tAS-xs-afx"/>
+                    </view>
+                    <connections>
+                        <outlet property="dontHaveAccountButton" destination="mh6-qM-ftI" id="yvd-sn-kjN"/>
+                        <outlet property="emailTextField" destination="Kaa-Lh-qvp" id="HGF-Ql-fmR"/>
+                        <outlet property="loginButton" destination="GSj-RO-GXr" id="AdY-a4-F0t"/>
+                        <outlet property="passwordTextField" destination="MAf-bm-Mzd" id="ymM-IP-bh0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ca0-yU-6kQ" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>
+        </scene>
+    </scenes>
+</document>

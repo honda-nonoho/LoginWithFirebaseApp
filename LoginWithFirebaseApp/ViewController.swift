@@ -36,6 +36,13 @@ class ViewController: UIViewController {
         handleAuthToFirebase()
     }
     
+    @IBAction func tappedAlreadyHaveAccountButton(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: "Login", bundle: nil)
+        let homeViewController = storyBoard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+        navigationController?.pushViewController(homeViewController, animated: true)
+//       self.present(homeViewController, animated: true,completion: nil)
+    }
+    
     private func handleAuthToFirebase() {
         HUD.show(.progress, onView: view)
         guard let email = emailTextField.text else { return }
@@ -100,9 +107,7 @@ class ViewController: UIViewController {
         homeViewController.user = user
         homeViewController.modalPresentationStyle = .fullScreen
         self.present(homeViewController, animated: true,completion: nil)
-        
-        
-    }
+        }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +123,12 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
     }
     
     @objc func showKeyboard(notification: Notification) {
@@ -161,10 +172,7 @@ extension ViewController : UITextFieldDelegate {
         } else {
             registerButton.isEnabled = true
             registerButton.backgroundColor = UIColor.rgb(red: 255, green: 141, blue: 0)
-           
         }
-        
-        
     }
     
 }
