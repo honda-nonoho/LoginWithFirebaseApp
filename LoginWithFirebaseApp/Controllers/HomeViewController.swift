@@ -16,7 +16,7 @@ import FirebaseAuth
 class HomeViewController: UIViewController {
     
     var user: User? {
-        didSet{
+        didSet {
             print("user?.name: ", user?.name)
         }
     }
@@ -32,12 +32,11 @@ class HomeViewController: UIViewController {
     
     private func handleLogout() {
         do {
-          try Auth.auth().signOut()
-          presentToMainViewController()
-        } catch (let err) {
+            try Auth.auth().signOut()
+            presentToSignUpViewController()
+         } catch (let err) {
             print("ログアウトに失敗しました。 \(err)")
         }
-        
     }
     
     override func viewDidLoad() {
@@ -58,17 +57,16 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         confirmLoggedInUser()
-        
     }
     
     private func confirmLoggedInUser() {
         if Auth.auth().currentUser?.uid == nil || user == nil {
-            presentToMainViewController()
+           presentToSignUpViewController()
         }
     }
     
-    private func presentToMainViewController(){
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    private func presentToSignUpViewController() {
+        let storyBoard = UIStoryboard(name: "SignUp", bundle: nil)
         let viewController = storyBoard.instantiateViewController(identifier: "ViewController") as! ViewController
         let navController = UINavigationController(rootViewController: viewController)
         navController.modalPresentationStyle = .fullScreen

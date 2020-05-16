@@ -12,19 +12,6 @@ import FirebaseAuth
 import FirebaseFirestore
 import PKHUD
 
-struct User {
-    
-    let name: String
-    let createdAt: Timestamp
-    let email: String
-    
-    init(dic: [String: Any]) {
-        self.name = dic["name"] as! String
-        self.createdAt = dic["createdAt"] as! Timestamp
-        self.email = dic["email"] as! String
-    }
-}
-
 class ViewController: UIViewController {
     
     @IBOutlet weak var registerButton: UIButton!
@@ -37,10 +24,41 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tappedAlreadyHaveAccountButton(_ sender: Any) {
-        let storyBoard = UIStoryboard(name: "Login", bundle: nil)
-        let homeViewController = storyBoard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-        navigationController?.pushViewController(homeViewController, animated: true)
-//       self.present(homeViewController, animated: true,completion: nil)
+        pushToLoginViewController()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        setupNotificationObserver()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func pushToLoginViewController() {
+      let storyBoard = UIStoryboard(name: "Login", bundle: nil)
+      let homeViewController = storyBoard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+      navigationController?.pushViewController(homeViewController, animated: true)
+    }
+    
+    private func setupViews() {
+        registerButton.isEnabled = false
+        registerButton.layer.cornerRadius = 10
+        registerButton.backgroundColor = UIColor.rgb(red: 255, green: 221, blue: 187)
+
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        usernameTextField.delegate = self
+    }
+    
+    private func setupNotificationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func handleAuthToFirebase() {
@@ -58,44 +76,44 @@ class ViewController: UIViewController {
             }
             self.addUserInfoToFirestore(email: email)
         }
-    
     }
     
+    // Firestoreにユーザー情報を保存
     private func addUserInfoToFirestore(email: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let name = self.usernameTextField.text else { return }
         
-        let docdata = ["email": email, "name": name, "createdAt": Timestamp()] as [String : Any]
+        let docData = ["email": email, "name": name, "createdAt": Timestamp()] as [String : Any]
         let userRef = Firestore.firestore().collection("users").document(uid)
         
-        userRef.setData(docdata) { (err) in
+        userRef.setData(docData) { (err) in
             if let err = err {
                 print("Firestoreへの保存に失敗しました。\(err)")
                 HUD.hide { (_) in
                     HUD.flash(.error, delay: 1)
                 }
-                
                 return
             }
-            print("Firestoreへの保存に成功しました。")
-            
-            userRef.getDocument { (snapshot, err)in
-                if let err = err {
-                    print("ユーザー情報の取得に失敗しました。\(err)")
-                    HUD.hide { (_) in
-                        HUD.flash(.error, delay: 1)
-                    }
-                    return
-                }
-    
-                guard let data = snapshot?.data() else { return }
-                let user = User.init(dic: data)
-                print("ユーザー情報の取得ができました。 \(user.name)")
-                HUD.hide { (_) in
-//                    HUD.flash(.success, delay: 1)
-                    HUD.flash(.success, onView: self.view, delay: 1) { (_) in
-                        self.presentToHomeViewController(user: user)
-                    }
+            self.fetchUserInfoFromFirestore(userRef: userRef)
+        }
+    }
+    // Firestoreからユーザー情報を取得
+    private func fetchUserInfoFromFirestore(userRef: DocumentReference) {
+        userRef.getDocument { (snapshot, err)in
+            if let err = err {
+               print("ユーザー情報の取得に失敗しました。\(err)")
+               HUD.hide { (_) in
+                   HUD.flash(.error, delay: 1)
+               }
+               return
+            }
+           
+            guard let data = snapshot?.data() else { return }
+            let user = User.init(dic: data)
+            print("ユーザー情報の取得ができました。 \(user.name)")
+            HUD.hide { (_) in
+                HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                    self.presentToHomeViewController(user: user)
                 }
             }
         }
@@ -109,27 +127,7 @@ class ViewController: UIViewController {
         self.present(homeViewController, animated: true,completion: nil)
         }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        registerButton.isEnabled = false
-        registerButton.layer.cornerRadius = 10
-        registerButton.backgroundColor = UIColor.rgb(red: 255, green: 221, blue: 187)
-
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        usernameTextField.delegate = self
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.isHidden = true
-    }
     
     @objc func showKeyboard(notification: Notification) {
         let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey]as AnyObject).cgRectValue
